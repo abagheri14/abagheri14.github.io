@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items List</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <h2>Available Items</h2>
+    <ul id="items-list"></ul>
+
+    <script>
+        fetch('items.json')
+            .then(response => response.json())
+            .then(items => {
+                const list = document.getElementById('items-list');
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name} - Category: ${item.category}`;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error loading items:', error));
+    </script>
+</body>
+</html>
